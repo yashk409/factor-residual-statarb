@@ -5,6 +5,22 @@ Successor to the [Kalman pairs-trading project](../Kalman/PROJECT_REPORT.md), wh
 
 ---
 
+> # ⚠️ STATUS: CLOSED — NULL RESULT. VERDICT: KILL IT.
+>
+> **Read [PROJECT_REPORT.md](PROJECT_REPORT.md) first.** Everything below is the original design brief, kept for the record. The plan it describes was executed. Here is what it found:
+>
+> - **Phase A PASSED its go/no-go.** Gross Sharpe **0.73** (criterion: <0.5 → stop). The edge is real: +1.5%/yr, positive in **57 of 60** structural configs, IC t = +4.11. No selection bias, no lookahead — the structural claim in this README held up under audit.
+> - **It cannot pay for itself.** Coverage **0.33×** (edge 1.67bps vs cost 5.00bps). Break-even cost **3.5bps**. Costs are **3× the gross edge**. Net −31.8% vs SPY's +343.6%.
+> - **It does not clear the bar even at ZERO cost.** Frictionless median Sharpe **0.38 < 0.5**. No allocator, model, or execution improvement can recover a Sharpe that is not there.
+> - **Phase B was killed at pre-flight, on evidence, before a line of it was written.** Deep learning finds **real** incremental alpha in the residual path (paired t = **+4.27**, gross Sharpe 1.97 vs 1.22) — and **loses money with it**, because that information lives at a frequency too expensive to trade. A turnover penalty cannot save it: penalizing turnover destroys precisely the alpha the model found.
+>
+> **The finding worth keeping:**
+> > **A better predictor is not a better strategy.** The OU s-score is not a crude approximation of what a network finds. It is *the part of what the network finds that you can actually keep*.
+>
+> **A false positive was caught mid-project — and it was the assistant's**, not the user's: a weekly-rebalance result (net Sharpe 0.26) read off the argmax of a 36-cell grid. It survived exactly one further test. See the falsification ledger.
+
+---
+
 ## Why this project exists
 
 The predecessor traded cointegrated **pairs**. It failed, and the post-mortem is the entire design brief here:
